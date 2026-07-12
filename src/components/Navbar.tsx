@@ -37,7 +37,11 @@ export default function Navbar({ activeSection }: NavbarProps) {
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? "bg-slate-950/80 backdrop-blur-md py-4 border-b border-slate-800" : "bg-transparent py-6"}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-        <span className="text-white font-bold text-xl tracking-tighter">KIRTHIKA.DEV</span>
+        
+        {/* Branding - KIRTHIKA mattum thaan irukkum */}
+        <span className="text-white font-bold text-xl tracking-tighter hover:text-indigo-400 transition cursor-pointer">
+          KIRTHIKA
+        </span>
 
         <div className="hidden md:flex gap-6">
           {navLinks.map((link) => (
