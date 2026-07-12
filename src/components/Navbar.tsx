@@ -25,9 +25,12 @@ export default function Navbar({ activeSection }: NavbarProps) {
 
   const navLinks = [
     { name: "Home", id: "home" },
-    { name: "Project", id: "project" },
+    { name: "About", id: "about" },
+    { name: "Skills", id: "skills" },
+    { name: "Experience", id: "experience" },
+    { name: "Projects", id: "project" },
     { name: "Education", id: "education" },
-    { name: "Skills", id: "soft-skills" },
+    { name: "Soft Skills", id: "soft-skills" },
     { name: "Contact", id: "contact" },
   ];
 
@@ -36,8 +39,7 @@ export default function Navbar({ activeSection }: NavbarProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
         <span className="text-white font-bold text-xl tracking-tighter">KIRTHIKA.DEV</span>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex gap-8">
+        <div className="hidden md:flex gap-6">
           {navLinks.map((link) => (
             <button
               key={link.id}
@@ -51,22 +53,19 @@ export default function Navbar({ activeSection }: NavbarProps) {
           ))}
         </div>
 
-        {/* Mobile Toggle */}
-        <button className="md:hidden text-white p-2" onClick={() => setIsOpen(!isOpen)}>
+        <button className="md:hidden text-white" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <X /> : <Menu />}
         </button>
       </div>
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-slate-900 border-b border-slate-800 p-4 space-y-4">
+        <div className="md:hidden bg-slate-900 border-b border-slate-800 p-4 space-y-3">
           {navLinks.map((link) => (
             <button
               key={link.id}
               onClick={() => handleScrollTo(link.id)}
-              className={`block w-full text-left py-2 ${
-                activeSection === link.id ? "text-indigo-400 font-bold" : "text-slate-300"
-              }`}
+              className="block w-full text-left text-slate-300 hover:text-indigo-400 py-2"
             >
               {link.name}
             </button>

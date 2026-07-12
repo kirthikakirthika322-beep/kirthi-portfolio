@@ -19,8 +19,11 @@ export default function App() {
 
   useEffect(() => {
     if (isLoading) return;
-    // Section IDs here must match the IDs in the main tag below
+
+    // IMPORTANT: IDs here must EXACTLY match the IDs in the section tags below
+    // Note: 'soft-skills' has a hyphen
     const sections = ["home", "about", "skills", "experience", "project", "education", "soft-skills", "contact"];
+    
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => { 
         if (entry.isIntersecting) setActiveSection(entry.target.id); 
@@ -31,7 +34,7 @@ export default function App() {
       const el = document.getElementById(id); 
       if (el) observer.observe(el); 
     });
-    
+
     return () => observer.disconnect();
   }, [isLoading]);
 
@@ -45,6 +48,7 @@ export default function App() {
         ) : (
           <motion.div key="content" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }}>
             <Navbar activeSection={activeSection} />
+            
             <main className="block w-full">
               <section id="home"><Hero /></section>
               <section id="about"><About /></section>
@@ -55,6 +59,7 @@ export default function App() {
               <section id="soft-skills"><SoftSkills /></section>
               <section id="contact"><Contact /></section>
             </main>
+            
             <Footer />
             <ScrollToTop />
           </motion.div>
