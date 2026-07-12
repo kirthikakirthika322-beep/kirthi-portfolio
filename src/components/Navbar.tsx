@@ -66,25 +66,36 @@ export default function Navbar({ activeSection }: NavbarProps) {
         <nav className="hidden md:flex items-center gap-1">
           {navItems.map((item) => (
             <a key={item.name} href={item.href} onClick={(e) => handleClick(e, item.href)} 
-               className={`px-4 py-2 rounded-full text-sm ${activeSection === item.href.substring(1) ? "text-white bg-indigo-600/20" : "text-slate-400 hover:text-white"}`}>
+               className={`px-4 py-2 rounded-full text-sm transition ${activeSection === item.href.substring(1) ? "text-white bg-indigo-600/20" : "text-slate-400 hover:text-white"}`}>
               {item.name}
             </a>
           ))}
         </nav>
 
         {/* Mobile Button */}
-        <button onClick={() => setIsOpen(!isOpen)} className="md:hidden p-3 text-white">
+        <button onClick={() => setIsOpen(!isOpen)} className="md:hidden p-3 text-white rounded-xl bg-slate-900 border border-slate-700">
           {isOpen ? <X size={25} /> : <Menu size={25} />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Dropdown */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="md:hidden bg-slate-950 border-t border-slate-800 overflow-hidden">
+          <motion.div 
+            initial={{ height: 0, opacity: 0 }} 
+            animate={{ height: "auto", opacity: 1 }} 
+            exit={{ height: 0, opacity: 0 }} 
+            // Fix: Added max-h and overflow for mobile stability
+            className="md:hidden bg-slate-950 border-t border-slate-800 overflow-y-auto max-h-[80vh] w-full"
+          >
             <div className="p-5 space-y-2">
               {navItems.map((item) => (
-                <a key={item.name} href={item.href} onClick={(e) => handleClick(e, item.href)} className="block p-3 text-slate-300 hover:bg-slate-900 hover:text-white rounded-lg">
+                <a 
+                  key={item.name} 
+                  href={item.href} 
+                  onClick={(e) => handleClick(e, item.href)} 
+                  className="block p-4 text-slate-300 hover:bg-slate-900 hover:text-white rounded-lg transition"
+                >
                   {item.name}
                 </a>
               ))}
