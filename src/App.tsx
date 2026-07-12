@@ -19,11 +19,19 @@ export default function App() {
 
   useEffect(() => {
     if (isLoading) return;
-    const sections = ["home", "about", "skills", "experience", "project", "education", "softskills", "contact"];
+    // Section IDs here must match the IDs in the main tag below
+    const sections = ["home", "about", "skills", "experience", "project", "education", "soft-skills", "contact"];
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => { if (entry.isIntersecting) setActiveSection(entry.target.id); });
+      entries.forEach((entry) => { 
+        if (entry.isIntersecting) setActiveSection(entry.target.id); 
+      });
     }, { root: null, rootMargin: "-50px 0px -50% 0px", threshold: 0.1 });
-    sections.forEach((id) => { const el = document.getElementById(id); if (el) observer.observe(el); });
+
+    sections.forEach((id) => { 
+      const el = document.getElementById(id); 
+      if (el) observer.observe(el); 
+    });
+    
     return () => observer.disconnect();
   }, [isLoading]);
 
@@ -44,7 +52,7 @@ export default function App() {
               <section id="experience"><Experience /></section>
               <section id="project"><Projects /></section>
               <section id="education"><Education /></section>
-              <section id="softskills"><SoftSkills /></section>
+              <section id="soft-skills"><SoftSkills /></section>
               <section id="contact"><Contact /></section>
             </main>
             <Footer />
