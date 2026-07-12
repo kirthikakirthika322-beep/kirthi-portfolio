@@ -7,16 +7,20 @@ export default function ScrollToTop() {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      setIsVisible(window.scrollY > 400);
+      // 300px-ku mela iruntha button-ai kaatum
+      setIsVisible(window.scrollY > 300);
     };
     window.addEventListener("scroll", toggleVisibility);
     return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
 
   const scrollToTop = () => {
+    // Mobile browsers-ku compatibility irukka behavior-ai handle seivom
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      behavior: typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches 
+        ? 'auto' 
+        : 'smooth',
     });
   };
 
@@ -28,10 +32,11 @@ export default function ScrollToTop() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.8, y: 20 }}
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 z-40 p-3 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/40 hover:from-blue-500 hover:to-indigo-500 transform hover:-translate-y-1 transition-all duration-300 border border-indigo-400/20 cursor-pointer"
+          // Mobile-il button touch target-a perusaa irukkanum (p-4)
+          className="fixed bottom-8 right-8 z-[100] p-4 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-600 text-white shadow-lg hover:scale-110 transition-transform duration-300 border border-indigo-400/20 cursor-pointer"
           aria-label="Scroll to top"
         >
-          <ChevronUp className="w-5 h-5" />
+          <ChevronUp className="w-6 h-6" />
         </motion.button>
       )}
     </AnimatePresence>
