@@ -1,10 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
-/* Essential for smooth scrolling and fixed header alignment */
+/* Basic reset and scroll behavior */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px; 
+  scroll-padding-top: 80px;
+  /* Mobile-il scroll chain prachanaiyai thadukkum */
+  overscroll-behavior: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  background-color: #020617; /* slate-950 */
 }
 
 @theme {
@@ -17,35 +27,23 @@ html {
 ::-webkit-scrollbar {
   width: 8px;
 }
-
 ::-webkit-scrollbar-track {
-  background: #020617; /* slate-950 */
+  background: #020617;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: #1e1b4b; /* bg-indigo-950 */
+  background: #1e1b4b;
   border-radius: 4px;
-  border: 1px solid #312e81; /* border-indigo-900 */
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: #4f46e5; /* bg-indigo-600 */
+  background: #4f46e5;
 }
 
-/* Custom glassmorphism and gradient utility classes */
+/* Glassmorphism Classes */
 .glass-panel {
   background: rgba(15, 23, 42, 0.45);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(99, 102, 241, 0.1);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.glass-panel-heavy {
-  background: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(99, 102, 241, 0.15);
 }
 
 .text-gradient {
@@ -55,21 +53,12 @@ html {
   background-image: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
 }
 
-.text-gradient-cyan-blue {
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  background-image: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+/* Mobile Menu Scroll fix */
+.menu-open {
+  overflow: hidden !important;
 }
 
-.text-gradient-purple-blue {
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  background-image: linear-gradient(135deg, #c084fc 0%, #6366f1 100%);
-}
-
-/* Custom glow background decorations */
+/* Utility for glowing spots */
 .glow-spot-blue {
   position: absolute;
   width: 300px;
@@ -77,21 +66,4 @@ html {
   background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0) 70%);
   filter: blur(40px);
   pointer-events: none;
-}
-
-.glow-spot-purple {
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, rgba(168, 85, 247, 0) 70%);
-  filter: blur(40px);
-  pointer-events: none;
-}
-
-/* Form autofill styling override for dark theme */
-input:-webkit-autofill,
-textarea:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0px 1000px #0b0f19 inset !important;
-  -webkit-text-fill-color: #f1f5f9 !important;
-  transition: background-color 5000s ease-in-out 0s;
 }
