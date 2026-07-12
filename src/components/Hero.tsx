@@ -1,4 +1,6 @@
-// ... (mela irukura imports appadiye irukkattum)
+import React from "react";
+// Ippo Framer Motion-ai import panniruken (ithu thaan correct method)
+import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
@@ -8,7 +10,7 @@ export default function Hero() {
         <div className="relative mb-8">
           <div className="w-64 h-64 rounded-full border-4 border-indigo-500/20 p-2 overflow-hidden bg-slate-900">
             <img 
-              src="/profile1.jpg" // Inga unga file name-ai podunga (e.g., "myphoto.jpg")
+              src="/profile1.jpg" 
               alt="V. Kirthika" 
               className="w-full h-full rounded-full object-cover"
             />
