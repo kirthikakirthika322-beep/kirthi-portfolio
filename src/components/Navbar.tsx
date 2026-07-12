@@ -21,11 +21,17 @@ export default function Navbar({ activeSection }: NavbarProps) {
     { name: "Contact", href: "#contact" },
   ];
 
+  // Scroll effect for header background
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Lock/Unlock body scroll when menu is open
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "auto";
+  }, [isOpen]);
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -85,7 +91,6 @@ export default function Navbar({ activeSection }: NavbarProps) {
             initial={{ height: 0, opacity: 0 }} 
             animate={{ height: "auto", opacity: 1 }} 
             exit={{ height: 0, opacity: 0 }} 
-            // Fix: Added max-h and overflow for mobile stability
             className="md:hidden bg-slate-950 border-t border-slate-800 overflow-y-auto max-h-[80vh] w-full"
           >
             <div className="p-5 space-y-2">
